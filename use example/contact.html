@@ -78,8 +78,8 @@
             width: 100%;
             padding: 10px 0px 20px 0px;
             outline: 0;
-            border: 1px solid rgba(105, 105, 105, 0.397);
-            border-radius: 10px;
+            border: none;
+            border-bottom: 3px rgba(88, 87, 87, 0.8) solid;
         }
 
         .form label .input + span {
@@ -112,6 +112,7 @@
             outline: none;
             background-color: royalblue;
             padding: 10px;
+            margin-top: 20px;
             border-radius: 10px;
             color: #fff;
             font-size: 16px;
@@ -152,22 +153,26 @@
         <p class="title">Questions?</p>
             <label>
                 <input required="true" placeholder="" type="text" class="input", id="mail">
-                <span>Mail</span>
+                <span>Name</span>
             </label>
             <label>
                 <input required="true" placeholder="" type="text" class="input", id="ques">
                 <span>write away...</span>
             </label>
-        <button class="button" onclick="sendInfo()">Submit</button>
+        <button class="submit" onclick="sendInfo()">Submit</button>
     </div>
 
     <script>
         function sendInfo() {
-            const mail = document.getElementById("mail").value;
-            const ques = document.getElementById("ques").value
-            if (mail != "" && ques != ""){
-                let data = JSON.stringify({"mail": mail, "question": ques});
+            const name = document.getElementById("mail");
+            const ques = document.getElementById("ques");
+            if (name.value != "" && ques.value != ""){
+                let data = JSON.stringify({"name": name.value, "question": ques.value});
                 let len = data.length;
+
+                name.value = "";
+                ques.value = "";
+
 
                 response = fetch("/question", {
                     method: "POST",
@@ -177,8 +182,6 @@
                     },
                     body: data
                 });
-            } else {
-                console.log("FAILED!")
             }
         }
     </script>

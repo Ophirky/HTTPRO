@@ -33,7 +33,8 @@ def get_question(request):
         :return bytes: The uri of the request.
     """
     ans = functions.dict_to_bytes(json.loads(request.BODY))
-    return b"username: " + ans[b"mail"] + b", question: " + ans[b"question"]
+    print(ans)
+    return b"name: " + ans[b"name"] + b", question: " + ans[b"question"]
 
 
 # Set the 404 page #
