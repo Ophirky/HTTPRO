@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questions?</title>
+    <link rel="stylesheet" href="../use example/css/nav.css">
+
+    <style>
+        * {
+            font-family: "Nunito", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e8e8e8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            width: 20vw;
+            top: 40vh;
+            height: 30vh;
+        }
+
+        .title {
+            font-size: 40px;
+            color: royalblue;
+            font-weight: 600;
+            letter-spacing: -1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+        }
+
+        .title::before,.title::after {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: -5px;
+            background-color: royalblue;
+        }
+
+        .title::before {
+            width: 28px;
+            height: 28px;
+            background-color: royalblue;
+        }
+
+        .title::after {
+            width: 28px;
+            height: 28px;
+            animation: pulse 1s linear infinite;
+        }
+
+        .message{
+            color: rgba(88, 87, 87, 0.822);
+            font-size: 14px;
+        }
+
+        .form label {
+            position: relative;
+
+        }
+
+        .form label .input {
+            width: 100%;
+            padding: 10px 0px 20px 0px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+        }
+
+        .form label .input + span {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+            color: grey;
+            font-size: 0.9em;
+            cursor: text;
+            transition: 0.3s ease;
+        }
+
+        .form label .input:placeholder-shown + span {
+            top: 15px;
+            font-size: 0.9em;
+        }
+
+        .form label .input:focus + span,.form label .input:valid + span {
+            top: 30px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .form label .input:valid + span {
+            color: green;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            background-color: royalblue;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transform: .3s ease;
+        }
+
+        .submit:hover {
+            background-color: rgb(56, 90, 194);
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a id="nav-bar-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar" id="last-bar"></span>
+        </a>
+        <ul id="nav-ul">
+          <li><a href="/">Home</a></li>
+          <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="form">
+        <p class="title">Questions?</p>
+            <label>
+                <input required="true" placeholder="" type="text" class="input", id="mail">
+                <span>Mail</span>
+            </label>
+            <label>
+                <input required="true" placeholder="" type="text" class="input", id="ques">
+                <span>write away...</span>
+            </label>
+        <button class="button" onclick="sendInfo()">Submit</button>
+    </div>
+
+    <script>
+        function sendInfo() {
+            const mail = document.getElementById("mail").value;
+            const ques = document.getElementById("ques").value
+            if (mail != "" && ques != ""){
+                let data = JSON.stringify({"mail": mail, "question": ques});
+                let len = data.length;
+
+                response = fetch("/question", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Content-Length": len
+                    },
+                    body: data
+                });
+            } else {
+                console.log("FAILED!")
+            }
+        }
+    </script>
+</body>
+</html>

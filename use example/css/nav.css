@@ -1,0 +1,31 @@
+nav {
+    width: 100vw;
+    background-color: #ededed;
+    height: 7vh;
+    position: absolute;
+    top: 0;
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 3;
+}
+
+nav ul {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 5vw;
+    float: right;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #525252;
+    font-size: 1.5rem;
+}
+
+.active {
+    top: 0;
+  }

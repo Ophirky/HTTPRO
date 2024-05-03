@@ -1,0 +1,132 @@
+
+#cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.card {
+    top: 25vh;
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 1);
+    transition: 0.2s 0s ease-out;
+  }
+  
+  #card1 {
+    background-image: url("../imgs/lion.jpg");
+    background-size: 215% 100%;
+  }
+  
+  #card1-heading {
+      background: linear-gradient(to bottom, #ffffff, rgb(207, 179, 21));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
+  #card2 {
+    background-image: url("../imgs/waves.jpg");
+    background-size: 300%;
+  
+  }
+  
+  #card2-heading {
+      background: linear-gradient(to bottom, #ffffff, #adaaff);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
+  #card3 {
+    background-image: url("../imgs/aviation.jpg");
+    background-size: 200% 100%;
+    background-position: 20%;
+  }
+  
+  #card3-heading {
+      background: linear-gradient(to bottom, #ffffff, green);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
+  .card .card-text {
+    position: absolute;
+    bottom: 100px;
+    padding-left: 20px;
+    color: white;
+    z-index: 1;
+  }
+  
+  #card1-heading, #card2-heading, #card3-heading {
+    font-size: 50px;
+    font-weight: 1000;
+    opacity: 0;
+    transition: 0.2s 0.2s ease-out;
+  }
+  
+  .card .card-text .line {
+    font-size: 25px;
+  }
+  
+  .card .black-half {
+    position: absolute;
+    width: inherit;
+    height: calc(var(--card-height)/2);
+    
+    left: -100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .card:hover .black-half {
+    display: block;
+    left: 0;
+  }
+  
+  .black-half#top {
+    top: 0;
+    transition: 0.2s 0s ease-out;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .black-half#bottom {
+    bottom: 0;
+    border-radius: 0 0 20px 20px;
+    transition: 0.2s 0.09s ease-out;
+  }
+  
+  .line {
+    opacity: 0;
+  }
+  
+  .line#one {
+    transition: 0.2s 0.18s ease-out;
+  }
+  
+  .line#two {
+    transition: 0.2s 0.14s ease-out;
+  }
+  
+  .line#three {
+    transition: 0.2s 0.1s ease-out;
+  }
+  
+  #card3:hover {
+    background-size: 225% 115%;
+  
+  }
+  #card2:hover {
+    background-size: 325%;
+  }
+  #card1:hover {
+      background-size: 250% 115%;
+  
+  }
+  .card:hover .line#one,
+  .card:hover .line#two,
+  .card:hover .line#three,
+  .card:hover .card-text #card1-heading,
+  .card:hover .card-text #card2-heading,
+  .card:hover .card-text #card3-heading {
+    opacity: 1;
+  }
